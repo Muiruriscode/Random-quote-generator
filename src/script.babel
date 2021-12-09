@@ -1,0 +1,59 @@
+const colors = [
+  '#16a085',
+  '#27ae60',
+  '#2c3e50',
+  '#f39c12',
+  '#e74c3c',
+  '#9b59b6',
+  '#FB6964',
+  '#342224',
+  '#472E32',
+  '#BDBB99',
+  '#77B1A9',
+  '#73A857'
+];
+const MyComponent = () => {
+	const [quotes, setQuotes] = React.useState({})
+	const [colour, setColour] = React.useState('#16a085')
+React.useEffect(() => {
+	handleSubmit()
+},[])
+  const handleSubmit =()=>{
+  fetch('https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json')
+  .then(response => response.json())
+  .then(json => {
+  	const id = Math.floor(Math.random()*json.quotes.length)
+  json.quotes.filter((item, index) => {
+  		if(index===id){
+      setQuotes(item)
+      }
+  })})
+ 	getColour()
+ }
+ 
+ const getColour = () => {
+ const colourId = Math.floor(Math.random()*colors.length)
+ colors.filter((item, index) => {
+ 	if(index === colourId){
+  console.log(item)
+  setColour(item)
+  }
+ })
+ }
+ const url='https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' +
+      encodeURIComponent('"' + quotes.quote + '" ' + quotes.author)
+ document.querySelector("body").style.backgroundColor = colour
+	return ( 
+  <div id="quote-box">
+  <blockquote>
+  <p id="text"><i class="fa fa-quote-left" aria-hidden="true"></i> {quotes.quote}</p>
+  <figcaption id="author">{quotes.author}</figcaption>
+  </blockquote>
+  <div class="container">
+  <a href={url} target="_top" id="tweet-quote"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+   <button type="submit" id="new-quote" onClick={handleSubmit} style={{"background": colour}}>New quote</button>
+  </div>
+  </div>
+  )
+}
+ReactDOM.render(<MyComponent />, document.querySelector("#app"))

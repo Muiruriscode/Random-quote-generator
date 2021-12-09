@@ -1,0 +1,41 @@
+body {
+  background: hsl(250, 50%, 70%);
+  font-family: arial;
+  transition: 1s all ease-in-out;
+}
+figcaption {
+  font-family: arial;
+  font-style: italic;
+  font-weight: 500;
+}
+
+#quote-box {
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s all ease-in-out;
+  }
+#new-quote {
+  background: hsl(300, 60%, 50%);
+  border: 0;
+  margin-bottom: 2rem;
+  padding: 10px;
+  font-size: 1em;
+  transition: 1s all ease-in-out;
+}
+.container{
+  display: flex;
+  justify-content: space-around;
+}
+#tweet-quote {
+  display: inline-block;
+}
+.fa-twitter {
+  color: #1DA1F2;
+}
+blockquote{
+  transition: 2s all ease-in-out;
+}
